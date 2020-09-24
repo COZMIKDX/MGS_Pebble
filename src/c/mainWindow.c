@@ -133,6 +133,7 @@ static void update_time() {
   text_layer_set_text(time_layer, buffer);
 }
 
+// Update the time and health text whenever the time changes (each minute)
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   update_time();
   set_health_info_text();
@@ -140,7 +141,7 @@ static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
 static void battery_state_handler(BatteryChargeState charge) {
   // Report the current charge percentage
-  APP_LOG(APP_LOG_LEVEL_INFO, "Battery charge is %d%%", (int)charge.charge_percent);
+  //APP_LOG(APP_LOG_LEVEL_INFO, "Battery charge is %d%%", (int)charge.charge_percent);
 
 }
 
@@ -241,6 +242,7 @@ void main_window_create() {
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
   update_time();
 
+  /*
   if(!health_service_events_subscribe(health_handler, NULL)) {
     APP_LOG(APP_LOG_LEVEL_ERROR, "Health not available!");
   }
@@ -248,10 +250,11 @@ void main_window_create() {
     set_health_info_text();
     APP_LOG(APP_LOG_LEVEL_INFO, "Health GET!");
   }
+  */
 
   battery_state_service_subscribe(battery_state_handler);
-  BatteryChargeState state = battery_state_service_peek();
-  APP_LOG(APP_LOG_LEVEL_INFO, "Battery charge is %d%%", (int)state.charge_percent);
+  //BatteryChargeState state = battery_state_service_peek();
+  //APP_LOG(APP_LOG_LEVEL_INFO, "Battery charge is %d%%", (int)state.charge_percent);
 
 }
 
@@ -260,6 +263,13 @@ void main_window_destroy() {
   gbitmap_destroy(mei_ling_pic);
   bitmap_layer_destroy(snake_layer);
   bitmap_layer_destroy(mei_ling_layer);
+
+  gbitmap_destroy(STEP_pic);
+  gbitmap_destroy(DISTANCE_pic);
+  gbitmap_destory(CALL_pic);
+  bitmap_layer_destroy(STEP_layer);
+  bitmap_layer_destroy(DISTANCE_layer);
+  bitmap_layer_destroy(CALL_layer);
   window_destroy(s_window);
 }
 
