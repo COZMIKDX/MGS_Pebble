@@ -1,3 +1,5 @@
+![](https://github.com/COZMIKDX/MGS_Pebble/blob/master/banner.png)
+
 # MGS_Pebble
 This is my Pebble Time version of preman_pasar's Amazfit Metal Gear Solid watch face.
 
