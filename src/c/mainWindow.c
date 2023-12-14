@@ -1,11 +1,13 @@
+//  This file mainly deals with the visuals of the watchface and setting the time and health
+//  data.
+
 #include <pebble.h>
 #include "mainWindow.h"
 #include "mgs_health.h"
 
+// Layer pointers and GBitmap pointers to stick in thin Bitmap Layers
 static Window *s_window;
 static Layer *canvas;
-static GFont digital_font_30;
-static GFont digital_font_15;
 //static TextLayer * ptt_layer;
 //static TextLayer * max_layer;
 static TextLayer * time_layer;
@@ -22,6 +24,9 @@ static BitmapLayer * DISTANCE_layer;
 static GBitmap * CALL_pic;
 static BitmapLayer * CALL_layer;
 
+// Font variables
+static GFont digital_font_30;
+static GFont digital_font_15;
 
 /* Data for GRects:
 top_panel
@@ -266,13 +271,13 @@ void main_window_destroy() {
 
   gbitmap_destroy(STEP_pic);
   gbitmap_destroy(DISTANCE_pic);
-  gbitmap_destory(CALL_pic);
+  gbitmap_destroy(CALL_pic);
   bitmap_layer_destroy(STEP_layer);
   bitmap_layer_destroy(DISTANCE_layer);
   bitmap_layer_destroy(CALL_layer);
   window_destroy(s_window);
 }
 
-Window * get_main_window() {
+/*Window * get_main_window() {
     return s_window;
-}
+}*/
